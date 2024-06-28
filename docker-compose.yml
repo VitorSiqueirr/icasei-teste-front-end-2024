@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  bff:
+    build: ./bff
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  mf_drawer:
+    build: ./mf_drawer
+    ports:
+      - "3001:3001"
+
+  mf_videos:
+    build: ./mf_videos
+    ports:
+      - "3002:3002"
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

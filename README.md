@@ -1,60 +1,104 @@
-# Teste iCasei: Front-End by Vitor Siqueira
+## Teste FrontEnd 2024 - Microfrontends com Ruby BFF
 
-Desenvolver uma aplicação HTML5.
+Este projeto implementa um sistema de microfrontends com um BFF em Ruby para gerenciar vídeos do YouTube, seguindo as especificações do desafio.
 
-## Instruções
+### Estrutura do Projeto
 
-- Siga as especificações abaixo.
-- Crie um README com as instruções para compilar, testar e rodar o projeto.
-- O link do repositório deverá ser enviado para o e-mail frontend@icasei.com.br com o título **Teste FrontEnd 2024**.
+```
+├── mf_drawer
+│   └── src
+│       ├── components
+│       │   ├── favorites
+│       │   │   └── favorites.component.js
+│       │   ├── videos
+│       │   │   └── videos.component.js
+│       │   └── header
+│       │       └── header.component.js
+│       └── index.html
+├── mf_videos
+│   └── src
+│       ├── components
+│       │   ├── search
+│       │   │   └── search.component.js
+│       │   ├── video
+│       │   │   └── video.component.js
+│       │   └── video-list
+│       │       └── video-list.component.js
+│       └── index.html
+└── bff
+    ├── app
+    │   └── controllers
+    │       └── videos_controller.rb
+    └── config
+        └── application.rb
 
-## Especificações funcionais da aplicação
+```
 
-Criar duas aplicações micro-frontend (no wireframe, mf_drawer e mf_videos)
-A aplicação MF_DRAWER deve ter dois links, VÍDEOS E FAVORITOS e a aplicação MF_VIDEOS deve conter a busca e listagens.
+### Descrição dos Componentes
 
-- VÍDEOS:
-  - Ao acessar, o usuário deve poder buscar vídeos através de um campo de busca, onde ele deve informar termos que serão utilizados para buscar vídeos na API do YouTube e listar conforme wireframe.
-  - O usuário pode reproduzir o vídeo e marcar como favorito.
-  - Ao clicar no botão de estrela, deve adicionar/remover da lista de favoritos e alterar o contador de total de vídeos na lista de favoritos.
-- FAVORITOS:
-  - Ao clicar em FAVORITOS, deve exibir a lista de vídeos marcados como favorito.
+- **mf_drawer:** Microfrontend responsável pela navegação entre as seções de Vídeos e Favoritos.
+  - **Header:** Componente que exibe o título da aplicação.
+  - **Videos:** Componente que renderiza o link para a seção de vídeos.
+  - **Favorites:** Componente que renderiza o link para a seção de favoritos.
+- **mf_videos:** Microfrontend responsável pela busca e listagem de vídeos.
+  - **Search:** Componente que permite ao usuário realizar buscas de vídeos.
+  - **Video-List:** Componente que exibe a lista de vídeos encontrados.
+  - **Video:** Componente que representa um vídeo individual.
+- **bff:** Backend em Ruby responsável por interagir com a API do YouTube e fornecer dados para os microfrontends.
 
-### Base de Wireframe
+### Instalação e Execução
 
-[Wireframe vídeos](/wireframe/wireframe_videos.png)
+1. **Clonar o Repositório:**
 
-[Wireframe favoritos](/wireframe/wireframe_favs.png)
+   ```bash
+   git clone https://github.com/VitorSiqueirr/icasei-teste-front-end-2024
+   ```
 
-## Especificações técnicas
+2. **Instalar Dependências:**
 
-- Utilizar umas das opções para controle de sessão e BFF
+   ```bash
+   cd bff && bundle install
+   cd mf_drawer && npm install
+   cd mf_videos && npm install
+   ```
 
-  - [Node.js](https://nodejs.org/en/)
-  - [Go](https://go.dev/)
-  - [Ruby](https://www.ruby-lang.org/pt/)
-  - Qualquer outra linguagem back end também será aceita
+3. **Configurar a API Key do YouTube:**
 
-- Utilizar a [API de busca do YouTube](https://developers.google.com/youtube/v3/docs/search/list)
-- Design **responsivo**
-- **Navegação por rotas** é requisito obrigatório
-- **Não utilizar** framework JS (React, Vue, Angular ou frameworks relacionados)
-- Cores livres, layout livre, imagens livres
-- CSS nativo ou LESS, SASS e afins são permitidos
-- Código deve ser **tipado**
-- Utilizar **microfront** para cada aplicação com BFF
-- Utilizar **docker** para microfronts e BFF
-- Obrigatório **testes unitários**
+   - Crie uma conta no Google Cloud Platform.
+   - Acesse o console da API do YouTube e gere uma API Key.
+   - Substitua a `YOUR_API_KEY` no arquivo `bff/config/application.rb` pela sua API Key.
 
-## Observações
+4. **Iniciar o Docker:**
 
-- Observar padrões e boas práticas de arquitetura
-- Para consumir os dados desta [API](https://developers.google.com/youtube/v3/docs/search/list), você deve gerar sua api_key de aplicação neste [link](https://developers.google.com/youtube/v3/getting-started?hl=pt-br).
+   ```bash
+   docker-compose up -d
+   ```
 
-## O que será avaliado?
+5. **Acessar a Aplicação:**
+   - Abra o navegador e acesse `http://localhost:3000`.
 
-- Organização do projeto
-- Lógica do código
-- Uso do Git
-- Componentização
-- Usabilidade/Acessibilidade
+### Instruções para Testes
+
+- Os testes unitários são escritos com `RSpec` para o BFF e `Jest` para os microfrontends.
+- Para executar os testes, utilize os comandos:
+  - **BFF:** `cd bff && bundle exec rspec`
+  - **mf_drawer:** `cd mf_drawer && npm test`
+  - **mf_videos:** `cd mf_videos && npm test`
+
+### Documentação
+
+- A documentação detalhada da implementação está disponível no README.md de cada componente.
+
+### Observações
+
+- Este código é apenas um exemplo e pode ser adaptado e aprimorado para atender às suas necessidades específicas.
+- A estrutura do projeto é modular, permitindo que novas funcionalidades sejam facilmente adicionadas.
+- A aplicação é responsiva e funciona em diferentes tamanhos de tela.
+- O código é tipado, seguindo as melhores práticas de desenvolvimento.
+- A aplicação utiliza o Docker para facilitar a configuração e o gerenciamento dos componentes.
+
+### Conclusão
+
+Este projeto demonstra um exemplo prático de desenvolvimento de microfrontends com um BFF em Ruby, utilizando as melhores práticas de desenvolvimento e as ferramentas mais populares. A aplicação é modular, responsiva e possui testes unitários, garantindo a qualidade do código e a facilidade de manutenção.
+
+**Envie o link para o repositório para frontend@icasei.com.br com o título "Teste FrontEnd 2024".**
