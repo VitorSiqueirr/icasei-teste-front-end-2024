@@ -5,46 +5,48 @@ Este projeto implementa um sistema de microfrontends com um BFF em Ruby para ger
 ### Estrutura do Projeto
 
 ```
-├── mf_drawer
-│   └── src
-│       ├── components
-│       │   ├── favorites
-│       │   │   └── favorites.component.js
-│       │   ├── videos
-│       │   │   └── videos.component.js
-│       │   └── header
-│       │       └── header.component.js
-│       └── index.html
-├── mf_videos
-│   └── src
-│       ├── components
-│       │   ├── search
-│       │   │   └── search.component.js
-│       │   ├── video
-│       │   │   └── video.component.js
-│       │   └── video-list
-│       │       └── video-list.component.js
-│       └── index.html
-└── bff
-    ├── app
-    │   └── controllers
-    │       └── videos_controller.rb
-    └── config
-        └── application.rb
-
+icasei-teste-front-end-2024/
+├── bff/
+│   ├── Gemfile
+│   ├── Gemfile.lock
+│   ├── app/
+│   │   ├── controllers/
+│   │   │   └── videos_controller.rb
+│   │   └── models/
+│   │       └── video.rb
+│   ├── config/
+│   │   └── application.rb
+│   ├── Dockerfile
+│   └── ...
+├── mf_drawer/
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   ├── package.json
+│   └── Dockerfile
+├── mf_videos/
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   ├── package.json
+│   └── Dockerfile
+├── docker-compose.yml
+└── README.md
 ```
 
 ### Descrição dos Componentes
 
-- **mf_drawer:** Microfrontend responsável pela navegação entre as seções de Vídeos e Favoritos.
-  - **Header:** Componente que exibe o título da aplicação.
-  - **Videos:** Componente que renderiza o link para a seção de vídeos.
-  - **Favorites:** Componente que renderiza o link para a seção de favoritos.
-- **mf_videos:** Microfrontend responsável pela busca e listagem de vídeos.
-  - **Search:** Componente que permite ao usuário realizar buscas de vídeos.
-  - **Video-List:** Componente que exibe a lista de vídeos encontrados.
-  - **Video:** Componente que representa um vídeo individual.
 - **bff:** Backend em Ruby responsável por interagir com a API do YouTube e fornecer dados para os microfrontends.
+  - Utiliza a gem `httparty` para fazer requisições à API do YouTube.
+  - Possui um controlador `VideosController` que gerencia as rotas para buscar e listar vídeos.
+  - Utiliza um modelo `Video` para representar os dados dos vídeos.
+- **mf_drawer:** Microfrontend responsável pela navegação entre as seções de Vídeos e Favoritos.
+  - Utiliza HTML, CSS e JavaScript para renderizar a barra de navegação.
+  - Faz requisições para o BFF para obter os dados dos vídeos favoritos.
+- **mf_videos:** Microfrontend responsável pela busca e listagem de vídeos.
+  - Utiliza HTML, CSS e JavaScript para renderizar a página de busca e a lista de vídeos.
+  - Faz requisições para o BFF para buscar vídeos na API do YouTube.
+  - Permite ao usuário marcar vídeos como favoritos.
 
 ### Instalação e Execução
 
@@ -54,19 +56,19 @@ Este projeto implementa um sistema de microfrontends com um BFF em Ruby para ger
    git clone https://github.com/VitorSiqueirr/icasei-teste-front-end-2024
    ```
 
-2. **Instalar Dependências:**
+2. **Configurar a API Key do YouTube:**
+
+   - Crie uma conta no Google Cloud Platform.
+   - Acesse o console da API do YouTube e gere uma API Key.
+   - Substitua a `YOUR_API_KEY` no arquivo `bff/config/application.rb` pela sua API Key.
+
+3. **Instalar Dependências:**
 
    ```bash
    cd bff && bundle install
    cd mf_drawer && npm install
    cd mf_videos && npm install
    ```
-
-3. **Configurar a API Key do YouTube:**
-
-   - Crie uma conta no Google Cloud Platform.
-   - Acesse o console da API do YouTube e gere uma API Key.
-   - Substitua a `YOUR_API_KEY` no arquivo `bff/config/application.rb` pela sua API Key.
 
 4. **Iniciar o Docker:**
 

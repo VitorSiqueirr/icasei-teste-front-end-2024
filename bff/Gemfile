@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+gem 'httparty'
+gem 'rack'
+gem 'sinatra'
+gem 'json'
+gem 'rspec'
+gem 'dotenv'
+gem 'puma'
+gem 'redis'
