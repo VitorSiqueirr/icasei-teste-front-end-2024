@@ -1,16 +1,16 @@
 /* styles.css */
 #mf-drawer {
-  /* Estilos para o menu lateral */
+  padding: 0;
 }
 
 #mf-drawer ul {
-  /* Estilos para a lista */
+  padding: 0;
 }
 
 #mf-drawer li {
-  /* Estilos para os itens da lista */
+  padding: 0;
 }
 
 #mf-drawer a {
-  /* Estilos para os links */
+  padding: 0;
 }
