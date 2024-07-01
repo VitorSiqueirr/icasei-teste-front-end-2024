@@ -18,7 +18,7 @@ class VideosController < Sinatra::Base
   rescue Redis::ConnectionError => e
     status 500
     content_type :json
-    { error: 'Internal Server Error' }.to_json
+    { error: 'Internal Server Error', content: e }.to_json
   end
 
   # Garante que um usuário tenha um ID de sessão
@@ -41,7 +41,7 @@ class VideosController < Sinatra::Base
     rescue StandardError => e
       status 500
       content_type :json
-      { error: 'Internal Server Error' }.to_json
+      { error: 'Internal Server Error', content: e }.to_json
     end
   end
 
@@ -79,7 +79,7 @@ class VideosController < Sinatra::Base
     rescue Redis::CommandError => e
       status 500
       content_type :json
-      { error: 'Internal Server Error' }.to_json
+      { error: 'Internal Server Error', content: e }.to_json
     end
   end
 
@@ -99,7 +99,7 @@ class VideosController < Sinatra::Base
     rescue Redis::ConnectionError => e
       status 500
       content_type :json
-      { error: 'Internal Server Error' }.to_json
+      { error: 'Internal Server Error', content: e }.to_json
     end
   end
 
@@ -117,7 +117,7 @@ class VideosController < Sinatra::Base
     rescue Redis::CommandError => e
       status 500
       content_type :json
-      { error: 'Internal Server Error' }.to_json
+      { error: 'Internal Server Error', content: e }.to_json
     end
   end
 end
