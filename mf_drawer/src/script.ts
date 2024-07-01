@@ -1,4 +1,4 @@
-import Drawer from "components/Drawer";
+import Drawer from "./components/Drawer";
 
 const links = [
   { text: "Vídeos", href: "/videos" },
