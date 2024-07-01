@@ -1,3 +1,5 @@
 instruções.txt
 /wireframe
 .env
+*/node_modules
+*/dist
