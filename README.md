@@ -6,32 +6,7 @@ Este projeto implementa um sistema de microfrontends com um BFF em Ruby para ger
 
 ```
 icasei-teste-front-end-2024/
-├── bff/
-│   ├── Gemfile
-│   ├── Gemfile.lock
-│   ├── app/
-│   │   ├── controllers/
-│   │   │   └── videos_controller.rb
-│   │   └── models/
-│   │       └── video.rb
-│   ├── config/
-│   │   └── application.rb
-│   ├── Dockerfile
-│   └── ...
-├── mf_drawer/
-│   ├── index.html
-│   ├── style.css
-│   ├── script.js
-│   ├── package.json
-│   └── Dockerfile
-├── mf_videos/
-│   ├── index.html
-│   ├── style.css
-│   ├── script.js
-│   ├── package.json
-│   └── Dockerfile
-├── docker-compose.yml
-└── README.md
+
 ```
 
 ### Descrição dos Componentes
@@ -58,10 +33,6 @@ icasei-teste-front-end-2024/
 
 2. **Configurar a API Key do YouTube:**
 
-   - Crie uma conta no Google Cloud Platform.
-   - Acesse o console da API do YouTube e gere uma API Key.
-   - Substitua a `YOUR_API_KEY` no arquivo `bff/config/application.rb` pela sua API Key.
-
 3. **Instalar Dependências:**
 
    ```bash
@@ -77,7 +48,7 @@ icasei-teste-front-end-2024/
    ```
 
 5. **Acessar a Aplicação:**
-   - Abra o navegador e acesse `http://localhost:3000`.
+   - Abra o navegador e acesse ``.
 
 ### Instruções para Testes
 

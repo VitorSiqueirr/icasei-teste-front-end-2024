@@ -1,12 +1,19 @@
 version: "3.8"
 
 services:
+  redis:
+    image: "redis:7.2.5"
+    container_name: "redis"
+    ports:
+      - "6379:6379"
+
   bff:
     build: ./bff
     ports:
       - "4567:4567"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - SECRET_KEY=SecretAIzaSyCK0EJBETlM4v-ZwNCGXpNP7crVca42gNYKeyehFodaMulAIzaSyCK0EJBETlM4v-ZwNCGXpNP7crVca42gNYeke
     command: bash -c "bundle install && bundle exec puma -p 4567"
-  redis:
-    image: redis:latest
-    ports:
-      - "6379:6379"
