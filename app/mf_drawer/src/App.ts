@@ -9,7 +9,7 @@ const App = () => {
   const drawer = new Drawer();
   const drawerElement = drawer.getElement();
 
-  // Crie o elemento de conteúdo (que será atualizado dinamicamente)
+  // Crie o elemento de conteúdo
   const contentElement = document.createElement("div");
   contentElement.id = "content";
 

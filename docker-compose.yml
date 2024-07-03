@@ -17,11 +17,3 @@ services:
       - REDIS_URL=redis://redis:6379
       - SECRET_KEY=SecretAIzaSyCK0EJBETlM4v-ZwNCGXpNP7crVca42gNYKeyehFodaMulAIzaSyCK0EJBETlM4v-ZwNCGXpNP7crVca42gNYeke
     command: bash -c "bundle install && bundle exec puma -p 4567"
-
-  app:
-    build: ./app
-    ports:
-      - "8080:8080"
-    depends_on:
-      - bff
-    command: bash -c "npm ci && npx webpack serve"
