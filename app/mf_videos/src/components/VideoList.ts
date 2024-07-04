@@ -1,58 +1,52 @@
+import { Video } from "../interface/VideoInterface";
+import Modal from "./Modal";
 import VideoItem from "./VideoItem";
-
-interface Video {
-  id: {
-    videoId: string;
-  };
-  snippet: {
-    title: string;
-    thumbnails: {
-      default: {
-        url: string;
-      };
-    };
-  };
-}
+import "../styles/Videos.css";
 
 class VideoList {
   private element: HTMLDivElement;
   private videos: Video[] = [];
+  private modal: Modal;
 
-  constructor() {
+  constructor(modal: Modal) {
+    this.modal = modal;
     this.element = document.createElement("div");
     this.element.classList.add("video-list");
   }
 
   public async searchVideos(query: string): Promise<void> {
     try {
-      const response = await fetch(`http://localhost:4567/videos?q=${query}`);
+      // const response = await fetch(`http://localhost:8080/videos?q=${query}`, {
+      //   method: "GET",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
 
-      if (!response.ok) {
-        throw new Error(
-          `Erro na busca: ${response.status} ${response.statusText}`
-        );
-      }
+      // if (!response.ok) {
+      //   throw new Error(
+      //     `Erro na busca: ${response.status} ${response.statusText}`
+      //   );
+      // }
 
-      const data = await response.json();
-      this.videos = data;
+      // const data = await response.json();
+      this.videos = exampleVideos;
       this.render();
-    } catch (error) {
-      console.error("Erro ao buscar vídeos:", error);
-    }
+    } catch (error) {}
   }
 
   private render(): void {
-    this.element.innerHTML = ""; // Limpa a lista antes de renderizar
+    this.element.innerHTML = "";
 
     if (this.videos.length === 0) {
-      // Exibe mensagem se não houver vídeos
       this.element.innerHTML = "<p>Nenhum vídeo encontrado.</p>";
       return;
     }
 
-    // Cria os VideoItems e adiciona à lista
-    this.videos.forEach((video) => {
-      const videoItem = new VideoItem(video);
+    // Crie os VideoItems com a estrutura correta
+    this.videos.forEach((video: Video) => {
+      // Adicione a tipagem aqui
+      const videoItem = new VideoItem(video, this.modal);
       this.element.appendChild(videoItem.getElement());
     });
   }
@@ -63,3 +57,30 @@ class VideoList {
 }
 
 export default VideoList;
+
+const exampleVideos: Video[] = [
+  {
+    id: "VIDEO_ID_1",
+    thumbnail_url: "https://i.ytimg.com/vi/VIDEO_ID_1/default.jpg",
+    title: "Exemplo de Vídeo 1",
+    url: "https://www.youtube.com/watch?v=VIDEO_ID_1",
+  },
+  {
+    id: "VIDEO_ID_2",
+    thumbnail_url: "https://i.ytimg.com/vi/VIDEO_ID_2/default.jpg",
+    title: "Exemplo de Vídeo 2",
+    url: "https://www.youtube.com/watch?v=VIDEO_ID_2",
+  },
+  {
+    id: "VIDEO_ID_3",
+    thumbnail_url: "https://i.ytimg.com/vi/VIDEO_ID_3/default.jpg",
+    title: "Exemplo de Vídeo 3",
+    url: "https://www.youtube.com/watch?v=VIDEO_ID_3",
+  },
+  {
+    id: "VIDEO_ID_4",
+    thumbnail_url: "https://i.ytimg.com/vi/VIDEO_ID_4/default.jpg",
+    title: "Exemplo de Vídeo 4",
+    url: "https://www.youtube.com/watch?v=VIDEO_ID_4",
+  },
+];

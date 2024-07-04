@@ -2,8 +2,10 @@ import VideoList from "./VideoList";
 
 class SearchBar {
   private element: HTMLDivElement;
+  private videoList: VideoList;
 
-  constructor() {
+  constructor(videoList: VideoList) {
+    this.videoList = videoList;
     this.element = document.createElement("div");
     this.element.classList.add("search-bar");
     this.render();
@@ -22,17 +24,13 @@ class SearchBar {
     });
   }
 
-  private handleSearch(): void {
+  private async handleSearch() {
     const searchInput = this.element.querySelector(
       "input"
     )! as HTMLInputElement;
     const searchTerm = searchInput.value;
 
-    // Implemente a lógica para buscar vídeos na API
-    // e atualizar a lista de vídeos com base no 'searchTerm'
-    console.log("Buscando por:", searchTerm);
-    const videoList = new VideoList(); // Crie uma instância do VideoList (ajuste se necessário)
-    videoList.searchVideos(searchTerm);
+    await this.videoList.searchVideos(searchTerm);
   }
 
   public getElement(): HTMLDivElement {

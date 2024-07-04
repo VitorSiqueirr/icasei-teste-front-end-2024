@@ -1,4 +1,5 @@
 import App from "./App";
+import Modal from "./components/Modal";
 import "./styles/Index.css";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,3 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Elemento mf_videos não encontrado!");
   }
 });
+
+export function onYouTubeIframeAPIReady(modal: Modal, videoId: string) {
+  modal.initializePlayer(videoId);
+}
