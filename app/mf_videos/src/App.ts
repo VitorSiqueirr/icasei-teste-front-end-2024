@@ -1,7 +1,6 @@
 import SearchBar from "./components/SearchBar";
 import VideoList from "./components/VideoList";
 import Modal from "./components/Modal";
-import "./styles/Index.css";
 
 const App = () => {
   const appElement = document.createElement("div");

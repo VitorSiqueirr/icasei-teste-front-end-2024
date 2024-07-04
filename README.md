@@ -2,13 +2,6 @@
 
 Este projeto implementa um sistema de microfrontends com um BFF em Ruby para gerenciar vídeos do YouTube, seguindo as especificações do desafio.
 
-### Estrutura do Projeto
-
-```
-icasei-teste-front-end-2024/
-
-```
-
 ### Descrição dos Componentes
 
 - **bff:** Backend em Ruby responsável por interagir com a API do YouTube e fornecer dados para os microfrontends.
@@ -16,11 +9,10 @@ icasei-teste-front-end-2024/
   - Possui um controlador `VideosController` que gerencia as rotas para buscar e listar vídeos.
   - Utiliza um modelo `Video` para representar os dados dos vídeos.
 - **mf_drawer:** Microfrontend responsável pela navegação entre as seções de Vídeos e Favoritos.
-  - Utiliza HTML, CSS e JavaScript para renderizar a barra de navegação.
-  - Faz requisições para o BFF para obter os dados dos vídeos favoritos.
+  - Utiliza HTML, CSS e JavaScript para renderizar a barra de navegação..
 - **mf_videos:** Microfrontend responsável pela busca e listagem de vídeos.
   - Utiliza HTML, CSS e JavaScript para renderizar a página de busca e a lista de vídeos.
-  - Faz requisições para o BFF para buscar vídeos na API do YouTube.
+  - Faz requisições para o BFF para buscar vídeos na API do YouTube e verificar a lista de favoritos.
   - Permite ao usuário marcar vídeos como favoritos.
 
 ### Instalação e Execução
@@ -31,32 +23,24 @@ icasei-teste-front-end-2024/
    git clone https://github.com/VitorSiqueirr/icasei-teste-front-end-2024
    ```
 
-2. **Configurar a API Key do YouTube:**
+2. **Instalar Dependências:**
 
-3. **Instalar Dependências:**
+   - Verificar o README.md de cada pasta app e bff para instalar as dependências.
 
-   ```bash
-   cd bff && bundle install
-   cd mf_drawer && npm install
-   cd mf_videos && npm install
-   ```
+3. **Iniciar o Docker:**
 
-4. **Iniciar o Docker:**
+- Somente inicie este comando após realizar as configurações do bff
 
-   ```bash
-   docker-compose up -d
-   ```
+```bash
+docker-compose up -d --build
+```
 
 5. **Acessar a Aplicação:**
-   - Abra o navegador e acesse ``.
+   - Abra o navegador e acesse `localhost:8080`.
 
 ### Instruções para Testes
 
-- Os testes unitários são escritos com `RSpec` para o BFF e `Jest` para os microfrontends.
-- Para executar os testes, utilize os comandos:
-  - **BFF:** `cd bff && bundle exec rspec`
-  - **mf_drawer:** `cd mf_drawer && npm test`
-  - **mf_videos:** `cd mf_videos && npm test`
+- As instruções para os testes estão disponíveis no README.md de cada parte do projeto
 
 ### Documentação
 

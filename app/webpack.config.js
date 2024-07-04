@@ -7,7 +7,7 @@ module.exports = {
       directory: path.join(__dirname, "public"),
     },
     port: 8080,
-    open: false,
+    open: true,
     proxy: [
       {
         context: ["/videos"],
